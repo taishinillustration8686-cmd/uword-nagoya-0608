@@ -575,6 +575,7 @@
       .venue-text { padding: 28px 26px; }
       .hero-badges { gap: 12px; }
       .badge { min-width: 108px; padding: 14px 18px; }
+      .map-access-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
     }
   </style>
 </head>
@@ -808,6 +809,64 @@
           </a>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── MAP ── -->
+<section style="background: var(--bg2); padding: 100px 24px;">
+  <div class="inner">
+    <span class="sec-label">Access</span>
+    <div class="bar"></div>
+    <h2 class="sec-title">会場へのアクセス</h2>
+
+    <div class="map-access-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-bottom: 36px;">
+      <ul class="dl" style="margin: 0;">
+        <li>
+          <span class="dk">会場名</span>
+          <span class="dv"><strong>深夜食堂 やまぐち</strong></span>
+        </li>
+        <li>
+          <span class="dk">住所</span>
+          <span class="dv">〒460-0008<br>愛知県名古屋市中区栄4-4-15<br>住吉観光ビル B1F</span>
+        </li>
+        <li>
+          <span class="dk">最寄り駅</span>
+          <span class="dv">名城線 <strong>栄駅</strong> 13番口 徒歩5分<br><small>新栄町駅 徒歩6分</small></span>
+        </li>
+        <li>
+          <span class="dk">電話</span>
+          <span class="dv"><a href="tel:0522633200" style="color: var(--gold-lt); text-decoration: none;">052-263-3200</a></span>
+        </li>
+        <li>
+          <span class="dk">フロア</span>
+          <span class="dv">地下1階（隠れ家空間）</span>
+        </li>
+      </ul>
+
+      <div>
+        <a href="https://maps.google.com/?q=愛知県名古屋市中区栄4-4-15+住吉観光ビル" target="_blank" class="btn-outline" style="display: block; text-align: center; margin-bottom: 20px;">
+          Google マップで開く →
+        </a>
+        <p style="font-size: 13px; color: var(--muted); line-height: 1.9;">
+          栄駅13番出口を出て徒歩約5分。<br>
+          住吉観光ビルの地下1階です。<br>
+          お店は地下にあるため看板をご確認ください。
+        </p>
+      </div>
+    </div>
+
+    <div style="border-radius: 18px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 16px 60px rgba(0,0,0,.5);">
+      <iframe
+        src="https://maps.google.com/maps?q=愛知県名古屋市中区栄4-4-15+住吉観光ビル&output=embed&z=17&hl=ja"
+        width="100%"
+        height="420"
+        style="border:0; display:block;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </div>
   </div>
 </section>
