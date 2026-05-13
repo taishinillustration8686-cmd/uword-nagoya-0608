@@ -857,26 +857,17 @@
       </div>
     </div>
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <div id="map" style="height: 420px; border-radius: 18px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 16px 60px rgba(0,0,0,.5);"></div>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>
-      (function() {
-        var map = L.map('map', { scrollWheelZoom: false }).setView([35.165649, 136.903506], 17);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-        var icon = L.divIcon({
-          html: '<div style="background:#c9a84c;width:18px;height:18px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.5);"></div>',
-          iconSize: [18, 18],
-          iconAnchor: [9, 9],
-          className: ''
-        });
-        L.marker([35.165649, 136.903506], { icon: icon }).addTo(map)
-          .bindPopup('<b style="font-size:14px;">深夜食堂 やまぐち</b><br><span style="font-size:12px;color:#666;">愛知県名古屋市中区栄4-4-15<br>住吉観光ビル B1F</span>')
-          .openPopup();
-      })();
-    </script>
+    <div style="border-radius: 18px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 16px 60px rgba(0,0,0,.5);">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d808.68!2d136.903506!3d35.165649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDknNTYuMyJOIDEzNsKwNTQnMTIuNiJF!5e0!3m2!1sja!2sjp!4v1683000000000!5m2!1sja!2sjp"
+        width="100%"
+        height="420"
+        style="border:0; display:block;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
   </div>
 </section>
 
