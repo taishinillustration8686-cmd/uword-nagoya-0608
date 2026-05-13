@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6/8 名古屋お食事交流会 | 深夜食堂やまぐち</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:      #c9a84c;
+      --gold-lt:   #e8cc80;
+      --wine:      #7b1f2a;
+      --wine-dk:   #3d0a10;
+      --bg:        #0c0909;
+      --bg2:       #110d0c;
+      --cream:     #f5ede0;
+      --muted:     #aa9080;
+      --border:    rgba(201,168,76,0.22);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--bg);
+      color: var(--cream);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* ── ALERT BAR ── */
+    .alert-bar {
+      background: linear-gradient(90deg, var(--wine-dk), var(--wine), var(--wine-dk));
+      text-align: center;
+      padding: 13px 16px;
+      font-size: 13.5px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      color: #ffdede;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .alert-bar strong { color: #fff; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 24px 80px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      position: absolute; inset: 0;
+      background: url('uword_yamaguchiimg/hero.webp') center/cover no-repeat;
+      filter: brightness(.38) saturate(.75);
+      transform: scale(1.04);
+      z-index: 0;
+    }
+
+    .hero-grad {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(12,9,9,.1) 0%,
+        rgba(61,10,16,.15) 45%,
+        rgba(12,9,9,.92) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-body {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+    }
+
+    .event-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      letter-spacing: .28em;
+      color: var(--gold-lt);
+      border: 1px solid var(--border);
+      padding: 7px 22px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      backdrop-filter: blur(6px);
+      background: rgba(12,9,9,.25);
+    }
+
+    .hero-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(34px, 8vw, 68px);
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: .04em;
+      margin-bottom: 10px;
+    }
+
+    .hero-date {
+      display: block;
+      font-size: clamp(15px, 3vw, 22px);
+      font-weight: 300;
+      color: var(--gold-lt);
+      letter-spacing: .22em;
+      margin-bottom: 14px;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: .1em;
+      line-height: 2;
+      margin-bottom: 44px;
+    }
+
+    /* メタバッジ群 */
+    .hero-badges {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 16px 26px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      backdrop-filter: blur(8px);
+      background: rgba(12,9,9,.5);
+      min-width: 128px;
+    }
+
+    .badge .bl { font-size: 11px; letter-spacing: .2em; color: var(--gold); }
+    .badge .bv {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    /* ── ボタン ── */
+    .btn-primary {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+      color: #1a1008;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 16.5px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      padding: 18px 56px;
+      border-radius: 100px;
+      text-decoration: none;
+      box-shadow: 0 6px 28px rgba(201,168,76,.38);
+      transition: transform .22s, box-shadow .22s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(201,168,76,.55);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Noto Serif JP', serif;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: .12em;
+      padding: 14px 44px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background .22s;
+    }
+    .btn-outline:hover { background: rgba(201,168,76,.08); }
+
+    /* ── スクロールライン ── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 30px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center;
+      gap: 8px; font-size: 10px; letter-spacing: .3em; color: var(--muted);
+      z-index: 2;
+    }
+    .scroll-hint::after {
+      content: ''; width: 1px; height: 44px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: drop 1.8s ease-in-out infinite;
+    }
+    @keyframes drop {
+      0%   { transform: scaleY(0); transform-origin: top; opacity: 0; }
+      50%  { transform: scaleY(1); opacity: 1; }
+      100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 24px; }
+    .inner { max-width: 920px; margin: 0 auto; }
+    .sec-label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: .35em;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .sec-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(22px, 4vw, 34px);
+      font-weight: 500;
+      line-height: 1.5;
+      margin-bottom: 36px;
+    }
+    .bar {
+      width: 44px; height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin-bottom: 30px;
+    }
+
+    /* ── ABOUT ── */
+    .about { background: var(--bg2); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .about-photo {
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 4/3;
+      box-shadow: 0 16px 60px rgba(0,0,0,.55);
+    }
+    .about-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(.88) saturate(.9);
+      transition: transform .5s;
+      display: block;
+    }
+    .about-photo:hover img { transform: scale(1.04); }
+    .about-photo::after {
+      content: '';
+      position: absolute; inset: 0;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      pointer-events: none;
+    }
+
+    .about-copy p {
+      font-size: 15px;
+      color: #cdbdad;
+      line-height: 2.15;
+      margin-bottom: 18px;
+    }
+    .about-copy p strong { color: var(--gold-lt); font-weight: 500; }
+
+    /* 数字カード */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 60px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    .stat {
+      padding: 36px 20px;
+      text-align: center;
+      background: rgba(255,255,255,.02);
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat .n {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 44px;
+      font-weight: 500;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .stat .n sup { font-size: 22px; }
+    .stat p { font-size: 12.5px; color: var(--muted); letter-spacing: .12em; }
+
+    /* ── VENUE ── */
+    .venue-wrap {
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      height: 520px;
+      margin-bottom: 52px;
+      box-shadow: 0 20px 80px rgba(0,0,0,.6);
+    }
+    .venue-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(.5) saturate(.8);
+      display: block;
+    }
+    .venue-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(12,9,9,.92) 0%, transparent 55%);
+    }
+    .venue-text {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 44px 48px;
+    }
+    .vtag {
+      display: inline-block;
+      font-size: 10.5px; letter-spacing: .22em;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      border-radius: 100px;
+      padding: 5px 16px;
+      margin-bottom: 14px;
+    }
+    .venue-text h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(26px, 4.5vw, 42px);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .venue-text p {
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: .12em;
+    }
+
+    .feat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .feat {
+      padding: 30px 22px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      text-align: center;
+      background: rgba(255,255,255,.025);
+      transition: border-color .3s, background .3s;
+    }
+    .feat:hover {
+      border-color: rgba(201,168,76,.45);
+      background: rgba(201,168,76,.04);
+    }
+    .feat .ico { font-size: 26px; display: block; margin-bottom: 12px; }
+    .feat h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 14.5px;
+      font-weight: 500;
+      color: var(--gold-lt);
+      margin-bottom: 8px;
+    }
+    .feat p { font-size: 13px; color: var(--muted); line-height: 1.8; }
+
+    /* ── MENU ── */
+    .menu { background: var(--bg2); }
+
+    /* メイン：店舗バナー風に大きく使う */
+    .menu-hero {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      aspect-ratio: 16/7;
+      box-shadow: 0 16px 60px rgba(0,0,0,.5);
+    }
+    .menu-hero img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(.65) saturate(.85);
+      transition: transform .5s;
+      display: block;
+    }
+    .menu-hero:hover img { transform: scale(1.03); }
+    .menu-hero-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 30px 34px;
+      background: linear-gradient(to top, rgba(0,0,0,.85) 0%, transparent 100%);
+    }
+    .menu-hero-info .mtag { font-size: 10px; letter-spacing: .25em; color: var(--gold); display: block; margin-bottom: 8px; }
+    .menu-hero-info h3 { font-family: 'Noto Serif JP', serif; font-size: clamp(18px, 3vw, 24px); font-weight: 500; }
+    .menu-hero-info p { font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.7; }
+
+    .menu-two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .menu-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 1/1;
+      box-shadow: 0 10px 40px rgba(0,0,0,.45);
+    }
+    .menu-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(.6) saturate(.8);
+      transition: transform .5s, filter .4s;
+      display: block;
+    }
+    .menu-card:hover img { transform: scale(1.06); filter: brightness(.72) saturate(1); }
+    .minfo {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 22px 24px;
+      background: linear-gradient(to top, rgba(0,0,0,.88) 0%, transparent 100%);
+    }
+    .minfo .mtag { font-size: 10px; letter-spacing: .22em; color: var(--gold); display: block; margin-bottom: 6px; }
+    .minfo h3 { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 500; margin-bottom: 5px; }
+    .minfo p { font-size: 12.5px; color: var(--muted); line-height: 1.7; }
+
+    .menu-extra {
+      margin-top: 22px;
+      padding: 22px 28px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      font-size: 14px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 2;
+      background: rgba(255,255,255,.02);
+    }
+    .menu-extra span { color: var(--cream); }
+
+    /* ── DETAILS ── */
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .dl { list-style: none; }
+    .dl li {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 14px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,.055);
+      font-size: 15px;
+    }
+    .dl li:last-child { border-bottom: none; }
+    .dl .dk { font-size: 11.5px; letter-spacing: .16em; color: var(--gold); padding-top: 3px; }
+    .dl .dv { color: var(--cream); line-height: 1.85; }
+    .dl .dv strong { font-weight: 500; }
+    .dl .dv small { display: block; font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    /* 料金ボックス */
+    .price-box {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      background: rgba(255,255,255,.025);
+    }
+    .pr {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,.055);
+    }
+    .pr:last-child { border-bottom: none; }
+    .pr .pt { font-size: 14px; color: var(--muted); }
+    .pr .pp {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 20px;
+      color: var(--gold-lt);
+      font-weight: 500;
+    }
+    .pr .pp small { font-size: 13px; color: var(--muted); margin-left: 4px; }
+
+    .free-drink {
+      display: block; text-align: center;
+      margin-top: 18px; font-size: 12px; letter-spacing: .2em;
+      color: var(--gold);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 8px;
+    }
+
+    .apply-box { margin-top: 32px; }
+    .apply-box p { font-size: 13px; color: var(--muted); line-height: 2; margin-bottom: 18px; }
+
+    /* ── CTA SECTION ── */
+    .cta-sec {
+      position: relative;
+      text-align: center;
+      padding: 130px 24px;
+      overflow: hidden;
+    }
+    .cta-bg {
+      position: absolute; inset: 0;
+      background: url('uword_yamaguchiimg/dishes.jpg') center/cover no-repeat;
+      filter: brightness(.14) saturate(.5);
+      z-index: 0;
+    }
+    .cta-veil {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(61,10,16,.3) 0%, rgba(12,9,9,.82) 70%);
+      z-index: 1;
+    }
+    .cta-body { position: relative; z-index: 2; max-width: 680px; margin: 0 auto; }
+    .cta-body .sec-title { font-size: clamp(24px, 4.5vw, 38px); margin-bottom: 14px; }
+    .cta-body p { font-size: 15px; color: var(--muted); line-height: 2.1; margin-bottom: 48px; }
+    .deadline {
+      margin-top: 26px;
+      font-size: 13px; letter-spacing: .1em;
+      color: #d06060;
+    }
+    .deadline strong { color: #ff9090; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #070505;
+      border-top: 1px solid rgba(255,255,255,.045);
+      padding: 64px 24px 40px;
+      text-align: center;
+    }
+    .footer-inner { max-width: 640px; margin: 0 auto; }
+    .foot-logo {
+      display: block;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 12.5px; letter-spacing: .3em;
+      color: var(--gold); margin-bottom: 28px;
+    }
+    .contact p { font-size: 13px; color: var(--muted); line-height: 2; }
+    .contact a {
+      display: block;
+      color: var(--gold-lt);
+      text-decoration: none;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      margin-top: 6px;
+    }
+    .copy {
+      margin-top: 36px;
+      font-size: 11px; letter-spacing: .15em;
+      color: rgba(255,255,255,.18);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 780px) {
+      section { padding: 72px 20px; }
+      .about-grid, .details-grid { grid-template-columns: 1fr; gap: 44px; }
+      .about-photo { aspect-ratio: 16/9; }
+      .stats { grid-template-columns: 1fr; }
+      .stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat:last-child { border-bottom: none; }
+      .feat-grid { grid-template-columns: 1fr; }
+      .menu-two { grid-template-columns: 1fr; }
+      .menu-hero { aspect-ratio: 4/3; }
+      .venue-wrap { height: 340px; }
+      .venue-text { padding: 28px 26px; }
+      .hero-badges { gap: 12px; }
+      .badge { min-width: 108px; padding: 14px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── ALERT BAR ── -->
+<div class="alert-bar">
+  ⚠️ <strong>先着30名様限定</strong>　お申し込み締め切り：<strong>6月1日（日）</strong>　定員になり次第終了します
+</div>
+
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-grad"></div>
+
+  <div class="hero-body">
+    <div class="event-tag">🍷&nbsp; U-WORD 加盟店 交流会 &nbsp;🍷</div>
+    <h1 class="hero-title">
+      <span class="hero-date">2025 . 6 . 8 Mon</span>
+      名古屋<br>お食事交流会
+    </h1>
+    <p class="hero-sub">
+      畑中先生による新規説明会のあと、<br>
+      栄・女子大エリアの隠れ家空間で<br>
+      美味しい料理とお酒を囲んで新しいご縁を。
+    </p>
+
+    <div class="hero-badges">
+      <div class="badge">
+        <span class="bl">DATE</span>
+        <span class="bv">6月8日（月）</span>
+      </div>
+      <div class="badge">
+        <span class="bl">TIME</span>
+        <span class="bv">18:00 〜 21:00</span>
+      </div>
+      <div class="badge">
+        <span class="bl">VENUE</span>
+        <span class="bv">深夜食堂 やまぐち</span>
+      </div>
+    </div>
+
+    <a href="https://chouseisan.com/s?h=b08f35951fe64a55be5694370dd4da54" target="_blank" class="btn-primary">
+      参加申し込みはこちら →
+    </a>
+  </div>
+
+  <div class="scroll-hint">SCROLL</div>
+</section>
+
+
+<!-- ── ABOUT ── -->
+<section class="about">
+  <div class="inner">
+    <div class="about-grid">
+      <div class="about-photo">
+        <img src="uword_yamaguchiimg/store.jpg" alt="深夜食堂やまぐち 店内">
+      </div>
+      <div class="about-copy">
+        <span class="sec-label">About This Event</span>
+        <div class="bar"></div>
+        <h2 class="sec-title">新しいご縁が<br>生まれる夜へ</h2>
+        <p>
+          <strong>6月8日（月）</strong>の畑中先生による新規説明会のあと、栄・女子大エリアに 2025年6月オープン・<strong>今年1月に新規入会</strong>した「深夜食堂 やまぐち」にて、加盟店交流会＆お披露目会を開催します。
+        </p>
+        <p>
+          地下に広がる隠れ家的な空間で、美味しいお料理と飲み放題を楽しみながら、ユーワードならではの温かい雰囲気の中でつながりを深めましょう。
+        </p>
+        <p>
+          <strong>初参加・お一人参加も大歓迎</strong>。どうぞお気軽にご参加ください。
+        </p>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="n">30<sup>名</sup></div>
+        <p>先着限定人数</p>
+      </div>
+      <div class="stat">
+        <div class="n">3<sup>h</sup></div>
+        <p>18:00 〜 21:00</p>
+      </div>
+      <div class="stat">
+        <div class="n">∞</div>
+        <p>飲み放題込み</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── VENUE ── -->
+<section>
+  <div class="inner">
+    <span class="sec-label">Venue</span>
+
+    <div class="venue-wrap">
+      <img src="uword_yamaguchiimg/store.jpg" alt="深夜食堂やまぐち">
+      <div class="venue-overlay"></div>
+      <div class="venue-text">
+        <span class="vtag">NEW MEMBER STORE — 2025.01</span>
+        <h2>深夜食堂 やまぐち</h2>
+        <p>名古屋市 栄・女子大エリア ／ 地下の隠れ家空間</p>
+      </div>
+    </div>
+
+    <div class="feat-grid">
+      <div class="feat">
+        <span class="ico">🏮</span>
+        <h3>地下の隠れ家空間</h3>
+        <p>非日常感あふれる地下フロア。大きな壁画が彩る落ち着いた空間でご宴会を。</p>
+      </div>
+      <div class="feat">
+        <span class="ico">🥂</span>
+        <h3>飲み放題付き</h3>
+        <p>ビール・ハイボール・ワインなど豊富なドリンクを3時間たっぷりお楽しみいただけます。</p>
+      </div>
+      <div class="feat">
+        <span class="ico">🌟</span>
+        <h3>新規加盟店お披露目</h3>
+        <p>2025年1月入会の「やまぐち」様との出会いも、この夜の特別なコンテンツです。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── MENU ── -->
+<section class="menu">
+  <div class="inner">
+    <span class="sec-label">Menu Highlights</span>
+    <div class="bar"></div>
+    <h2 class="sec-title">名物料理をご堪能ください</h2>
+
+    <!-- 料理の全体盛りを大きく -->
+    <div class="menu-hero">
+      <img src="uword_yamaguchiimg/dishes.jpg" alt="やまぐちの豊富なお料理">
+      <div class="menu-hero-info">
+        <span class="mtag">FULL COURSE LINE-UP</span>
+        <h3>バラエティ豊かなお料理の数々</h3>
+        <p>黒毛和牛のすき焼き鍋・お刺身・牛すじ煮込みなど、充実したラインナップ。</p>
+      </div>
+    </div>
+
+    <!-- ユッケ＋サクチキ南蛮 -->
+    <div class="menu-two">
+      <div class="menu-card">
+        <img src="uword_yamaguchiimg/yukkeh.jpg" alt="炙りユッケ">
+        <div class="minfo">
+          <span class="mtag">SPECIALTY</span>
+          <h3>炙りユッケ</h3>
+          <p>やみつき必至の名物。炙りの香ばしさと卵黄の濃厚さが絶妙。</p>
+        </div>
+      </div>
+
+      <div class="menu-card" style="background: var(--bg);">
+        <img src="uword_yamaguchiimg/hero.webp" alt="サクチキ南蛮">
+        <div class="minfo">
+          <span class="mtag">POPULAR</span>
+          <h3>やまぐち流<br>サクチキ南蛮</h3>
+          <p>外はサクッ、中はジューシー。甘辛ダレ＋タルタルで大人気。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-extra">
+      他にも ／ <span>牛すじ煮込み</span> ／ <span>黒毛和牛のすき焼き鍋</span> ／ <span>お刺身盛り合わせ</span> ／ など<br>
+      充実したお料理ラインナップをご用意しています。
+    </div>
+  </div>
+</section>
+
+
+<!-- ── DETAILS ── -->
+<section>
+  <div class="inner">
+    <span class="sec-label">Event Details</span>
+    <div class="bar"></div>
+    <h2 class="sec-title">参加詳細</h2>
+
+    <div class="details-grid">
+      <ul class="dl">
+        <li>
+          <span class="dk">日時</span>
+          <span class="dv"><strong>2025年6月8日（月）</strong><small>18:00〜21:00（3時間）</small></span>
+        </li>
+        <li>
+          <span class="dk">会場</span>
+          <span class="dv"><strong>深夜食堂 やまぐち</strong><small>名古屋市 栄・女子大エリア（地下）</small></span>
+        </li>
+        <li>
+          <span class="dk">定員</span>
+          <span class="dv"><strong>先着30名様</strong><small style="color:#d06060">※定員になり次第締め切り</small></span>
+        </li>
+        <li>
+          <span class="dk">申込締切</span>
+          <span class="dv"><strong>6月1日（日）</strong></span>
+        </li>
+        <li>
+          <span class="dk">対象</span>
+          <span class="dv">ユーワード加盟店様 / 未会員の方も歓迎</span>
+        </li>
+        <li>
+          <span class="dk">備考</span>
+          <span class="dv">初参加・お一人参加も大歓迎</span>
+        </li>
+      </ul>
+
+      <div>
+        <div class="price-box">
+          <div class="pr">
+            <span class="pt">未会員</span>
+            <span class="pp">¥6,000<small>（税込）</small></span>
+          </div>
+          <div class="pr">
+            <span class="pt">U会員</span>
+            <span class="pp">1,500pt<small>＋¥4,500</small></span>
+          </div>
+          <span class="free-drink">🥂 飲み放題込み</span>
+        </div>
+
+        <div class="apply-box">
+          <p>
+            ご参加の方は、下記フォームにお名前をご入力ください。<br>
+            「6/8(月)愛知新規セミナー後交流会」
+          </p>
+          <a href="https://chouseisan.com/s?h=b08f35951fe64a55be5694370dd4da54" target="_blank" class="btn-outline" style="display: block; text-align: center;">
+            参加申し込みフォーム →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── CTA ── -->
+<section class="cta-sec">
+  <div class="cta-bg"></div>
+  <div class="cta-veil"></div>
+  <div class="cta-body">
+    <span class="sec-label">Apply Now</span>
+    <h2 class="sec-title">一緒に、特別な夜を<br>過ごしましょう</h2>
+    <p>
+      美味しい料理と飲み放題、温かい仲間との語らい。<br>
+      ユーワードならではの交流の場で、あなたの新しいご縁が始まります。
+    </p>
+    <a href="https://chouseisan.com/s?h=b08f35951fe64a55be5694370dd4da54" target="_blank" class="btn-primary">
+      今すぐ申し込む（先着30名）
+    </a>
+    <p class="deadline">
+      ⚠️ 締め切り：<strong>6月1日（日）</strong>　定員になり次第終了します
+    </p>
+  </div>
+</section>
+
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <span class="foot-logo">U-WORD 加盟店 × 深夜食堂 やまぐち</span>
+    <div class="contact">
+      <p>お問い合わせ</p>
+      <p>堅田 不二子</p>
+      <a href="tel:08034035395">080-3403-5395</a>
+    </div>
+    <p style="font-size: 13px; color: var(--muted); margin-top: 28px; line-height: 2;">
+      会場：<a href="https://u-word.com/teppan/store/storeDetail/134209" target="_blank" style="color: var(--gold-lt); text-decoration: none;">深夜食堂 やまぐち（ユーワード公式ページ）</a>
+    </p>
+    <p class="copy">© 2025 U-WORD 加盟店交流会</p>
+  </div>
+</footer>
+
+</body>
+</html>
